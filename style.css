@@ -1,0 +1,30 @@
+body{
+    background: lavender;
+    text-align: center;
+    text-decoration: wavy;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+    font-size: 40px;
+    margin: 15px;
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-rows: 200px 200px 200px;
+    grid-template-columns: 200px 200px 200px;
+    row-gap: 15px;
+    column-gap: 10px;
+}
+
+.square {
+    border: 2px black;
+    background:lightblue;
+    height: 140px;
+    width: 140px;
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
