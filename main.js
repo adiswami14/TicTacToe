@@ -1,11 +1,13 @@
 let board;
 let currentTurn = 'X';
-let winner;
+let winner = "";
 const squares = Array.from(document.querySelectorAll("div.square"));
 const topMessage = document.querySelector('h2');
 document.getElementById("board").addEventListener("click", makeTurn);
 function init() {
     topMessage.textContent = "Start the game up!";
+    currentTurn = 'X';
+    winner = "";
     board = [
         '', '', '',
         '', '', '',
@@ -30,14 +32,16 @@ function makeTurn(event) {
         }
     }
     let index = squares.findIndex(getClickedSquare);
-    if(event.target.innerHTML === "") { //square has not been clicked yet
+    if(event.target.innerHTML === "" && winner === "") { //square has not been clicked yet
         board[index] = currentTurn;
         event.target.innerHTML = currentTurn;
         winner = checkWin(currentTurn);
         currentTurn === 'X' ? currentTurn = 'O' : currentTurn = 'X';
         if(winner === '') {
-            topMessage.textContent = `It is ${currentTurn}'s turn!`
-        } else topMessage.textContent = `${winner} won!`
+            if(isBoardFilled()) {
+                topMessage.textContent = "No one won!";
+            } else topMessage.textContent = `It is ${currentTurn}'s turn!`;
+        } else topMessage.textContent = `${winner} won!`;
     }
 }
 
@@ -77,6 +81,12 @@ function checkWinByDiagonals(currChar) {
         return true;
     } 
     return false;
+}
+
+function isBoardFilled() {
+    return board.every(function (e) {
+        return (e === 'X' || e === 'O');
+    });
 }
 
 init();
