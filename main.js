@@ -34,7 +34,11 @@ function makeTurn(event) {
         }
     }
     let index = squares.findIndex(getClickedSquare);
-    board[index] = currentTurn;
+    if(event.target.innerHTML === "") { //square has not been clicked yet
+        board[index] = currentTurn;
+        event.target.innerHTML = currentTurn;
+        currentTurn === 'X' ? currentTurn = 'O' : currentTurn = 'X';
+    }
     console.log(board);
 }
 
